@@ -6,6 +6,9 @@ import scalafx.scene.Scene
 import scalafx.scene.canvas.Canvas
 import scalafx.scene.paint.Color
 import scalafx.scene.input.MouseEvent
+import scalafx.scene.input.KeyEvent
+import scalafx.scene.input.KeyCode
+import scalafx.animation.AnimationTimer
 
 object FirstWindow extends JFXApp {
   stage = new JFXApp.PrimaryStage {
@@ -52,9 +55,36 @@ object FirstWindow extends JFXApp {
       g.setFill(Color.White)
       g.fillRect(0,0, 600,400)
 
+      g.setStroke(Color.Black)
       canvas.onMouseDragged = (e:MouseEvent) => {
         g.strokeLine(300,200, e.x,e.y)
       }
+
+      canvas.onKeyPressed= (e:KeyEvent) => {
+        if(e.code == KeyCode.Space && e.controlDown) {
+          g.setFill(Color.White)
+          g.fillRect(0,0, 600,400)
+        }
+        if(e.code == KeyCode.R) {
+          g.setFill(Color.Red)
+          g.fillRect(0,0, 600,400)
+        }
+      }
+      canvas.requestFocus()
+
+      var xpos:Double = 300
+      var xvel:Double = 2
+      val timer = AnimationTimer(t => {
+        g.setFill(Color.White)
+        g.fillRect(0,0, 600,400)
+        g.setFill(Color.SkyBlue)
+        g.fillOval(xpos,200, 100,100)
+        if(xpos + 100 >= 600 || xpos < 0) {
+          xvel = -xvel
+        }
+        xpos += xvel
+      })
+      timer.start()
 
 
 
