@@ -9,6 +9,7 @@ import scalafx.scene.input.MouseEvent
 import scalafx.scene.input.KeyEvent
 import scalafx.scene.input.KeyCode
 import scalafx.animation.AnimationTimer
+import scalafx.scene.image.Image
 
 object FirstWindow extends JFXApp {
   stage = new JFXApp.PrimaryStage {
@@ -74,12 +75,17 @@ object FirstWindow extends JFXApp {
 
       var xpos:Double = 300
       var xvel:Double = 2
+
+      val path = getClass().getResource("/images/Star.png")
+      val img = new Image(path.toString)
+
       val timer = AnimationTimer(t => {
         g.setFill(Color.White)
         g.fillRect(0,0, 600,400)
         g.setFill(Color.SkyBlue)
-        g.fillOval(xpos,200, 100,100)
-        if(xpos + 100 >= 600 || xpos < 0) {
+        //g.fillOval(xpos,200, 100,100)
+        g.drawImage(img, xpos,200)
+        if(xpos + img.width.value >= 600 || xpos < 0) {
           xvel = -xvel
         }
         xpos += xvel
