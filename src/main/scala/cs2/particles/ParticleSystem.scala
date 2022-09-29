@@ -9,7 +9,7 @@ class ParticleSystem(private var origin:Vec2) {
   def display(g:GraphicsContext):Unit = {
     for(p <- parts) {
       p.display(g)
-      println(parts.length)
+      //println(parts.length)
     }
     //parts.foreach(_.display(g))
   }
@@ -19,8 +19,13 @@ class ParticleSystem(private var origin:Vec2) {
   }
 
   def addParticle():Unit = {
-    parts ::= new Particle(origin.clone(),
-                 new Vec2(math.random()*4-2, math.random()*4-2))
+    //if(math.random() < 0.5) {
+      parts ::= new RainbowParticle(origin.clone(),
+                  new Vec2(math.random()*4-2, math.random()*4-2))
+    //} else {
+    //  parts ::= new SquareParticle(origin.clone(),
+    //             new Vec2(math.random()*4-2, math.random()*4-2))
+    //}
   }
 
 

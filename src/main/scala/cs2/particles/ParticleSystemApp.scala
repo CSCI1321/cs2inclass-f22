@@ -21,9 +21,10 @@ object ParticleSystemApp extends JFXApp {
       val timer = AnimationTimer(t => {
         g.setFill(Color.White)
         g.fillRect(0,0, width.value, height.value)
+        ps.addParticle()
         ps.display(g)
         ps.timeStep()
-        ps.addParticle()
+        
       })
       timer.start()
 
