@@ -15,5 +15,8 @@ abstract class Particle(protected var pos:Vec2, protected var vel:Vec2) {
   def timeStep():Unit = {
     pos += vel
   }
+  def applyForce(force:Vec2):Unit = {
+    vel += force
+  }
   
 }
