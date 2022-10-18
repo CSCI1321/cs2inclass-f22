@@ -12,6 +12,11 @@ abstract class Particle(protected var pos:Vec2, protected var vel:Vec2) {
 
   def display(g:GraphicsContext)
 
+  def isDead():Boolean = {
+    if(pos.x < 0 || pos.x > 800 || pos.y < 0 || pos.y > 800) true
+    else false
+  }
+
   def timeStep():Unit = {
     pos += vel
   }
