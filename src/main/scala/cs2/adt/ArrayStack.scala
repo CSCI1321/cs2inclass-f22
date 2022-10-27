@@ -1,7 +1,7 @@
 package cs2.adt
 
 class ArrayStack[A : Manifest] extends Stack[A] {
-  var arr:Array[A] = Array()
+  var arr:Array[A] = Array.ofDim[A](10)
   var len = 0
 
   def push(elem:A):Unit = {
@@ -12,6 +12,13 @@ class ArrayStack[A : Manifest] extends Stack[A] {
     }
     tmp(arr.length) = elem
     arr = tmp*/
+    if(len == arr.length) { //out of space
+      val tmp = Array.ofDim[A]( len * 2 )
+      for(i <- 0 until len) {
+        tmp(i) = arr(i)
+      }
+      arr = tmp
+    }
     arr(len) = elem
     len += 1
   }
@@ -28,6 +35,6 @@ class ArrayStack[A : Manifest] extends Stack[A] {
     len -= 1
     result
   }
-  def peek():A = { arr(arr.length - 1) }
-  def isEmpty():Boolean = { arr.length == 0 }
+  def peek():A = { arr(len - 1) }
+  def isEmpty():Boolean = { len == 0 }
 }
