@@ -1,8 +1,10 @@
 package cs2.adt
 
+import java.util.EmptyStackException
+
 class ArrayStack[A : Manifest] extends Stack[A] {
-  var arr:Array[A] = Array.ofDim[A](10)
-  var len = 0
+  private var arr:Array[A] = Array.ofDim[A](10)
+  private var len = 0
 
   def push(elem:A):Unit = {
     /*
@@ -31,10 +33,18 @@ class ArrayStack[A : Manifest] extends Stack[A] {
     val result = arr(arr.length - 1)
     arr = tmp
     result*/
+    if(isEmpty()) {
+      throw new EmptyStackException()
+    }
     val result = peek()
     len -= 1
     result
   }
-  def peek():A = { arr(len - 1) }
+  def peek():A = { 
+    if(isEmpty()) {
+      throw new EmptyStackException()
+    }
+    arr(len - 1)
+  }
   def isEmpty():Boolean = { len == 0 }
 }

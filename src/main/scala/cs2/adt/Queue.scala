@@ -8,7 +8,7 @@ abstract class Queue[A] {
 }
 
 object Queue {
-  def apply[A]():Queue[A] = new ArrayQueue[A]()
+  def apply[A : Manifest]():Queue[A] = new ArrayQueue[A]()
 }
 
 
