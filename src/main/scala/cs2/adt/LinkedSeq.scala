@@ -32,8 +32,8 @@ class LinkedSeq[A] extends Seq[A] with Iterable[A] {
     if(idx < 0 || idx >= length()) {
       throw new IndexOutOfBoundsException()
     }
-    val rover = getNode(idx)
-    rover.data
+    val puppy = getNode(idx)
+    puppy.data
   }
   def set(idx:Int, elem:A):Unit = {
     if(idx < 0 || idx >= length()) {
